@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e59d40be-48cd-4450-9994-4c2dd93ea77f" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="errorpractFlow" doc:id="164e4104-bd4e-48e6-984c-c6feaa149680" >
+		<http:listener doc:name="Listener" doc:id="2445e676-82be-4cb2-b4ca-bebc03f38687" config-ref="HTTP_Listener_config" path="errorpract"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c1dbbaeb-937e-4e5f-b251-bc659196d942"/>
+		<set-variable value="200" doc:name="Set Variable" doc:id="94f539fd-8e37-42ba-8dce-4371236a3417" variableName="amount"/>
+		<choice doc:name="Choice" doc:id="a4c3f3b6-422f-40ca-99e7-0084b1b0010f" >
+			<when expression="#[payload.order_amount &lt;= vars.amount]">
+				<ee:transform doc:name="Transform Message" doc:id="38b15f4b-dc86-4837-929a-555ea89f69e6" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"message" : "order placed succesfully"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<raise-error doc:name="Raise error" doc:id="4db47287-6c77-45a7-bdbb-1299cf2855a8" type="in : INSUFFICIENT FUNDS"/>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="374bfd2d-5465-4ae7-97b2-3105eb32dec7"/>
+	</flow>
+</mule>
