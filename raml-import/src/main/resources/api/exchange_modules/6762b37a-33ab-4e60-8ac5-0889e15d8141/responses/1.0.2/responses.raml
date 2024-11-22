@@ -1,0 +1,56 @@
+#%RAML 1.0 Trait
+
+description: responses
+
+responses:
+  400:
+    body:
+     application/json:
+       example:
+        {
+          "Message" : "Bad request"
+        }
+      
+
+  404:
+    body:
+      application/json:
+        example:
+          {
+            "Message" : "Not Found"
+          }
+      
+  405:
+    body:
+      application/json:
+        example:
+          {
+            "Message" : "Method not allowed"
+          }   
+      
+
+  500:
+    body:
+      application/json:
+         example:
+          {
+            "Message" : "Internal server error"
+          }
+  502:
+    body:
+      application/json:
+        example:
+                 {
+          "Message" : "Bad Gateway"
+        }
+   
+ 
+
+      
+  504:
+    body:
+      application/json:
+        example:
+          {
+            "Message" : "Gateway timeout"
+          }

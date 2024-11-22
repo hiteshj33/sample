@@ -1,0 +1,72 @@
+#%RAML 1.0
+title: calci
+version: 1.0
+
+protocols:
+  - HTTPS
+
+mediaType: 
+- application/json
+
+traits:
+  tr : !include  /variables/trait.raml
+  err : !include /exchange_modules/6762b37a-33ab-4e60-8ac5-0889e15d8141/responses/1.0.2/responses.raml
+
+securitySchemes:
+  sec : !include /schemes/securityScheme.raml
+
+
+/addition:
+  get:
+    is:
+      - tr
+      - err
+
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Sum is 8"
+              }
+
+/subtraction:
+  get:
+    is:
+      
+
+    responses:
+      200:
+        body:
+          example:
+            {
+              "message": "difference is 8"
+            }
+
+/multiply:
+  get:
+    is:
+      - tr
+
+    responses:
+      200:
+        body:
+          example:
+            {
+              "message": "multiplication is 8"
+            }
+
+/division:
+  get:
+    is:
+      - tr
+
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "message": "division is 8"
+              }
