@@ -1,3 +1,32 @@
 
 place = input("I am from ")
 print(type(place))
+
+a="5"
+b="10"
+print(a+b)
+
+name = "J"
+age= 27
+marks= 99
+
+print("Student: ",name ,"|Age: ",age, "|Marks: ",marks)
+
+print(f"Student: {name} |Age: {age} |Marks: {marks}")
+
+item = "Coffee"
+price = 150
+GST =0.18
+total = price + (price*GST)
+print(f"Item: {item} | Price: ${price} | Gst: {price*GST} | Total: {total}")
+
+n = int(input("Enter any number"))
+if n%2 == 0:
+    print(f"{n} is even")
+else:
+    print(f"{n} is odd")
+
+for i in range(0,20,2):
+    if (i%2==0):
+        print(f"{i} is even")
+
