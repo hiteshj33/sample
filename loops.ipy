@@ -1,0 +1,3 @@
+
+place = input("I am from ")
+print(type(place))
