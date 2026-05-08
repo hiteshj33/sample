@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 venv/
+=======
+newenv/
+>>>>>>> c9153f0 (loops)
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
